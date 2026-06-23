@@ -1,0 +1,57 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.*
+
+# Next.js
+.next/
+out/
+build/
+dist/
+next-env.d.ts
+
+# Environment (jamais commiter les secrets)
+.env
+.env.*
+!.env.example
+
+# Brainstorm visual companion (local uniquement)
+.superpowers/
+
+# Claude Code — settings locaux
+.claude/settings.local.json
+
+# Éditeurs / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Tests / build
+coverage/
+playwright-report/
+test-results/
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Yarn (au cas où)
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Déploiement
+.vercel
+
+# scaffold-tmp (temp dir)
+scaffold-tmp/
