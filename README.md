@@ -6,7 +6,7 @@ servie sur `khepria.pro`.
 ## Contenu
 
 - [`index.html`](index.html) — landing **autonome** : CSS, JS et SVG sont *inline*, aucune
-  dépendance réseau ni build. Exportée depuis Claude Design. CTA : `mailto:contact@khepria.pro`.
+  dépendance réseau ni build. Exportée depuis Claude Design. CTA : `mailto:olivier@khepria.pro`.
 
 ## Déploiement (Coolify / VPS Hostinger)
 
