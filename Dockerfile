@@ -1,27 +1,11 @@
-FROM node:20-alpine AS base
-RUN corepack enable && corepack prepare pnpm@10.33.0 --activate
+# Landing "Bientôt en ligne" — page statique servie par nginx.
+# Pas de build : le HTML est autonome (CSS/JS/SVG inline, zéro dépendance réseau).
+# Écoute sur 3000 pour conserver le mapping de port existant côté Coolify.
+FROM nginx:1.27-alpine
 
-FROM base AS deps
-WORKDIR /app
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY index.html /usr/share/nginx/html/index.html
 
-FROM base AS builder
-WORKDIR /app
-ARG NEXT_PUBLIC_TURNSTILE_SITE_KEY
-ENV NEXT_PUBLIC_TURNSTILE_SITE_KEY=$NEXT_PUBLIC_TURNSTILE_SITE_KEY
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
-RUN pnpm build
-
-FROM base AS runner
-WORKDIR /app
-ENV NODE_ENV=production PORT=3000 HOSTNAME=0.0.0.0
-RUN addgroup --system --gid 1001 nodejs \
- && adduser --system --uid 1001 nextjs
-COPY --from=builder --chown=nextjs:nodejs /app/public ./public
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
-USER nextjs
 EXPOSE 3000
-CMD ["node", "server.js"]
+
+# nginx tourne déjà en foreground via le CMD de l'image de base.

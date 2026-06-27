@@ -1,58 +1,32 @@
-# Site vitrine kheprIA
+# khepria.pro — landing « Bientôt en ligne »
 
-Site vitrine de **kheprIA**, agence IA pour les PME de Nouvelle-Aquitaine (Limoges).
-Site marketing : présentation des services, des produits, de l'équipe, et un formulaire de contact.
+Page de pré-lancement de **kheprIA** (agence IA pour les PME de Nouvelle-Aquitaine, Limoges),
+servie sur `khepria.pro`.
 
-> ## 🎨 But de ce dépôt — étude de refonte graphique
->
-> Ce dépôt est partagé pour **étudier le site et proposer une nouvelle direction graphique**.
-> Le code est fonctionnel mais le design est **en cours de recherche** — n'hésite pas à
-> repenser librement l'identité visuelle (palette, typographie, mise en page, mouvement),
-> tout en conservant la structure des pages et le contenu.
->
-> **Direction visuelle actuelle (perfectible)** : blanc, minimaliste, « futuriste » façon Apple,
-> avec un objet 3D épuré en hero et des animations fluides au scroll. C'est précisément
-> cette couche graphique qu'on cherche à élever.
+## Contenu
 
-## Stack
+- [`index.html`](index.html) — landing **autonome** : CSS, JS et SVG sont *inline*, aucune
+  dépendance réseau ni build. Exportée depuis Claude Design. CTA : `mailto:contact@khepria.pro`.
 
-- **Next.js 16** (App Router) · **TypeScript** strict
-- **Tailwind v4** (tokens de design en variables CSS, dans `src/app/globals.css`)
-- **three.js / @react-three/fiber** — objet 3D du hero (lazy, avec fallback statique)
-- **GSAP + Lenis + Motion** — smooth-scroll et reveals au scroll
-- Tests : **Vitest** (unit) + **Playwright** (e2e)
+## Déploiement (Coolify / VPS Hostinger)
 
-## Structure
+Le site est servi en **statique par nginx** (pas de Node, pas de build) :
 
-```
-src/
-  app/                 # Pages (App Router) : accueil, services, à-propos, contact, légales
-    globals.css        # Tokens de design (couleurs, polices) — point d'entrée d'une refonte
-    layout.tsx         # Layout racine, polices, header/footer, smooth-scroll
-  components/
-    sections/          # Sections de la home (hero, stats, services, dogfooding, équipe, cta)
-    motion/            # Primitives d'animation (reveal, smooth-scroll, …)
-    webgl/             # Scène 3D du hero (R3F) + fallback
-    site-header / site-footer
-  lib/                 # Constantes du site, schéma du formulaire, utilitaires
-public/                # Assets statiques (placeholders à remplacer)
-```
+- [`Dockerfile`](Dockerfile) — image `nginx:alpine` qui copie `index.html` et `nginx.conf`.
+- [`nginx.conf`](nginx.conf) — écoute sur le port **3000** (conserve le mapping Coolify
+  existant), sert `index.html` pour tout chemin, expose `/health` et `/api/health`.
 
-Bons points d'entrée pour une refonte : `src/app/globals.css` (palette + polices),
-`src/components/sections/*` (composition de chaque section), `src/app/layout.tsx`.
-
-## Démarrer
+Coolify (build pack **Dockerfile**) construit l'image et la sert derrière Traefik.
+Tester l'image en local :
 
 ```bash
-pnpm install
-pnpm dev        # http://localhost:3000
+docker build -t khepria-landing .
+docker run --rm -p 3000:3000 khepria-landing
+# http://localhost:3000
 ```
 
-Autres scripts : `pnpm build`, `pnpm start`, `pnpm lint`, `pnpm test`, `pnpm e2e`.
+## Historique
 
-## Notes
-
-- Les **assets** (photos d'équipe, captures produits, texture 3D) sont des **placeholders**.
-- Le **formulaire de contact** poste vers une route serveur `/api/contact` qui relaie vers un
-  backend configurable (`PLATFORM_LEADS_URL`, voir `.env.example`) — aucune clé n'est incluse.
-- Contenu en **français**, cible PME locales.
+Ce dépôt portait auparavant la vitrine Next.js multi-pages (hero 3D, services, contact).
+Ce code reste disponible dans l'historique git (commit parent de la bascule) et dans le
+workspace de dev local `Siteweb`.
