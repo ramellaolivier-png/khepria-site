@@ -7,8 +7,9 @@ servie sur `khepria.pro`.
 
 - [`index.html`](index.html) — landing **autonome** (CSS, JS, police Manrope et SVG *inline*,
   aucune dépendance réseau ni build) : hero canvas (hexagone or/cyan tracé, soleil levant, flux de
-  lumière interactifs au pointeur), puis teasing de **KheprIA OS** et **KheprIA Entreprise** avec
-  schémas SVG animés, schéma d'articulation et pied « Lancement à venir » + `mailto:olivier@khepria.pro`.
+  lumière interactifs au pointeur) centré sur **KheprIA Entreprise** (agents IA pour TPE), section
+  « Notre atelier » (**KheprIA OS** + espaces clients protégés), schémas SVG animés et pied d'appel
+  « premières entreprises » + `mailto:olivier@khepria.pro`.
   `prefers-reduced-motion` fige toutes les animations.
 - [`og.jpg`](og.jpg) — aperçu de partage 1200×630. [`fond.webp`](fond.webp) — image de l'ancienne
   scène, plus utilisée par la page (conservée car copiée par le bloc de mise à jour ci-dessous).

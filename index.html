@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>kheprIA — KheprIA OS et KheprIA Entreprise, lancement à venir</title>
-<meta name="description" content="kheprIA conçoit en France ses propres logiciels d'IA pour les petites entreprises : KheprIA OS, puis KheprIA Entreprise. Lancement à venir.">
+<title>kheprIA — Des agents IA qui travaillent pour votre entreprise</title>
+<meta name="description" content="KheprIA Entreprise : des agents IA conçus en France qui relancent, préparent et classent pour les petites entreprises, toujours sous votre contrôle. Lancement à venir.">
 <link rel="canonical" href="https://khepria.pro/">
 <meta name="theme-color" content="#000000">
 <meta name="color-scheme" content="dark">
@@ -12,9 +12,9 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="kheprIA">
 <meta property="og:locale" content="fr_FR">
-<meta property="og:title" content="kheprIA — KheprIA OS et KheprIA Entreprise, lancement à venir">
+<meta property="og:title" content="kheprIA — Des agents IA qui travaillent pour votre entreprise">
 <meta property="og:url" content="https://khepria.pro/">
-<meta property="og:description" content="kheprIA conçoit en France ses propres logiciels d'IA pour les petites entreprises : KheprIA OS, puis KheprIA Entreprise. Lancement à venir.">
+<meta property="og:description" content="KheprIA Entreprise : des agents IA conçus en France qui relancent, préparent et classent pour les petites entreprises, toujours sous votre contrôle. Lancement à venir.">
 <meta property="og:image" content="https://khepria.pro/og.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
@@ -32,7 +32,7 @@
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0}
 
-/* Layout: hero canvas plein cadre, puis deux sections texte | schéma animé (alternées), un schéma d'articulation, un pied sobre. Monde unique sombre (charte or/cyan de la landing hexagone). */
+/* Layout: hero canvas plein cadre centré sur Entreprise, section Entreprise (texte | schéma), atelier OS + espaces protégés, pied d'appel « premières entreprises ». Monde unique sombre (charte or/cyan de la landing hexagone). */
 :root{
   --ink:#07090a; --panel:#0d1213; --line:#24312f; --cream:#f3f1ec; --mute:#97a39f;
   --gold:#DC9E61; --cyan:#3DA69D;
@@ -100,16 +100,15 @@ h2{font:800 clamp(1.7rem,3.6vw,2.6rem)/1.1 var(--display);letter-spacing:-.015em
 @keyframes gate{0%,62%{stroke:var(--line);fill:var(--panel)}70%,88%{stroke:var(--gold);fill:#1d1710}100%{stroke:var(--line);fill:var(--panel)}}
 .brain{stroke:var(--cyan);fill:#0b1817}
 
-/* Articulation */
-.link{padding-block:96px;border-bottom:1px solid var(--line)}
-.link h2{max-width:22ch}
-.link .lede{margin-bottom:40px}
+/* Espaces protégés (sous l'atelier) */
+.protect{margin-top:72px}
+.protect .lede{margin-bottom:28px}
 .wide{overflow-x:auto}
 .wide svg{min-width:560px;width:100%;height:auto;display:block}
 
 /* Pied */
 .foot{padding-block:80px 64px;display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between;align-items:end}
-.soon{font:600 clamp(1.5rem,3vw,2.1rem) var(--display);margin:0}
+.soon{font:600 clamp(1.5rem,3vw,2.1rem)/1.2 var(--display);margin:0;max-width:24ch;text-wrap:balance}
 .soon small{display:block;font:400 1rem var(--body);color:var(--mute);margin-top:8px}
 .soon .base{font:400 .75rem var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-top:22px}
 .mail{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
@@ -120,7 +119,7 @@ h2{font:800 clamp(1.7rem,3.6vw,2.6rem)/1.1 var(--display);letter-spacing:-.015em
 @media (max-width:820px){
   .grid,.prod.flip .grid{grid-template-columns:minmax(0,1fr);gap:36px}
   .prod.flip .copy{order:0}
-  .prod,.link{padding-block:64px}
+  .prod{padding-block:64px}
   .hero{min-height:560px}
 }
 @media (max-width:700px){
@@ -136,67 +135,21 @@ h2{font:800 clamp(1.7rem,3.6vw,2.6rem)/1.1 var(--display);letter-spacing:-.015em
   <canvas id="sky" aria-hidden="true"></canvas>
   <div class="wrap top"><span class="mark">khepr<b>IA</b></span><span class="where">Conçu en France</span></div>
   <div class="wrap hero-text">
-    <div class="eyebrow">Logiciels d'IA conçus en France</div>
-    <h1>Deux outils <em>se lèvent</em> chez kheprIA.</h1>
-    <p class="lede">On conçoit en France nos propres logiciels d'IA pour les petites entreprises. Le premier pilote nos projets avec vous. Le second fera travailler des agents pour vous.</p>
-    <nav class="duo" aria-label="Les deux outils"><a href="#os">KheprIA OS</a><a href="#entreprise">KheprIA Entreprise</a></nav>
+    <div class="eyebrow">KheprIA Entreprise · bientôt</div>
+    <h1>Des agents IA qui <em>travaillent</em> pour votre entreprise.</h1>
+    <p class="lede">Conçus en France pour les indépendants et les petites entreprises : des agents qui relancent, préparent et classent, et qui n'agissent jamais sans votre accord.</p>
+    <nav class="duo" aria-label="Aller à"><a href="#entreprise">Découvrir</a><a href="#premiers">Être parmi les premiers</a></nav>
   </div>
 </header>
 
 <main>
-<section class="prod" id="os">
+<section class="prod ent" id="entreprise">
   <div class="wrap grid">
     <div class="copy">
-      <div class="step"><span>D'abord</span> · en préparation</div>
-      <h2>KheprIA OS</h2>
-      <p class="tag">Le poste de pilotage de vos projets.</p>
-      <p>De l'audit de départ à la mise en service, chaque étape de votre projet tient sur un seul fil. Vous savez où il en est sans avoir à relancer personne.</p>
-      <ul class="facts">
-        <li>Audit, code et livraison dans un même dossier</li>
-        <li>L'avancement vient du travail livré, pas d'un pourcentage au doigt mouillé</li>
-        <li>Un espace client pour suivre votre projet</li>
-      </ul>
-    </div>
-    <figure class="figure" style="margin:0">
-      <svg class="osline" viewBox="0 0 1000 230" role="img" aria-label="Le fil d'un projet : audit, dossier, développement, livraison, espace client">
-        <defs>
-          <symbol id="hx" viewBox="-1 -1 2 2"><polygon points="0,-1 .866,-.5 .866,.5 0,1 -.866,.5 -.866,-.5" vector-effect="non-scaling-stroke"/></symbol>
-          <filter id="glow" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-        </defs>
-        <path class="wire" d="M80 90 H920"/>
-        <g class="os">
-          <use href="#hx" class="node" x="45" y="55" width="70" height="70"/>
-          <use href="#hx" class="node" x="255" y="55" width="70" height="70" style="animation-delay:1.5s"/>
-          <use href="#hx" class="node" x="465" y="55" width="70" height="70" style="animation-delay:3s"/>
-          <use href="#hx" class="node" x="675" y="55" width="70" height="70" style="animation-delay:4.5s"/>
-          <use href="#hx" class="node" x="885" y="55" width="70" height="70" style="animation-delay:6s"/>
-        </g>
-        <g filter="url(#glow)"><circle r="8" class="pg"><animateMotion dur="6s" repeatCount="indefinite" path="M80 90 H920"/></circle></g>
-        <g text-anchor="middle">
-          <text class="lbl" x="80" y="170">Audit</text>
-          <text class="lbl" x="290" y="170">Dossier</text>
-          <text class="lbl" x="500" y="170">Code</text>
-          <text class="lbl" x="710" y="170">Livraison</text>
-          <text class="lbl" x="920" y="170">Vous</text>
-          <text class="sub" x="80" y="200">le départ</text>
-          <text class="sub" x="290" y="200">un seul dossier</text>
-          <text class="sub" x="500" y="200">suivi au commit</text>
-          <text class="sub" x="710" y="200">mise en service</text>
-          <text class="sub" x="920" y="200">espace client</text>
-        </g>
-      </svg>
-      <figcaption class="cap">Un seul fil, de l'audit à votre espace client.</figcaption>
-    </figure>
-  </div>
-</section>
-
-<section class="prod ent flip" id="entreprise">
-  <div class="wrap grid">
-    <div class="copy">
-      <div class="step"><span>Ensuite</span> · on y réfléchit</div>
-      <h2>KheprIA Entreprise</h2>
-      <p class="tag">Des agents IA qui travaillent pour vous, selon vos règles.</p>
-      <p>Pour l'indépendant comme pour le commerce de quinze personnes, sans service informatique. Des agents qui relancent, préparent et classent, et qui n'agissent jamais sans votre accord.</p>
+      <div class="step"><span>KheprIA Entreprise</span> · en préparation</div>
+      <h2>Vos agents, vos règles.</h2>
+      <p class="tag">Pour l'indépendant comme pour le commerce de quinze personnes, sans service informatique.</p>
+      <p>Chaque agent prend en charge une tâche qui vous fait perdre du temps : relancer un client, préparer un devis, tenir l'agenda, classer les documents. Il prépare, vous décidez.</p>
       <ul class="facts">
         <li>L'agent propose, vous validez</li>
         <li>Vos règles de maison, avec retour arrière</li>
@@ -205,6 +158,10 @@ h2{font:800 clamp(1.7rem,3.6vw,2.6rem)/1.1 var(--display);letter-spacing:-.015em
     </div>
     <figure class="figure" style="margin:0">
       <svg viewBox="0 0 640 420" role="img" aria-label="Des agents envoient leurs propositions au cerveau de l'entreprise, qui les soumet à votre validation">
+        <defs>
+          <symbol id="hx" viewBox="-1 -1 2 2"><polygon points="0,-1 .866,-.5 .866,.5 0,1 -.866,.5 -.866,-.5" vector-effect="non-scaling-stroke"/></symbol>
+          <filter id="glow" x="-200%" y="-200%" width="500%" height="500%"><feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        </defs>
         <path class="wire" d="M118 60 L245 210 M118 160 L240 210 M118 260 L240 210 M118 360 L245 210 M380 210 H500"/>
         <use href="#hx" class="node ag" x="50" y="28" width="64" height="64"/>
         <use href="#hx" class="node ag" x="50" y="128" width="64" height="64" style="animation-delay:.75s"/>
@@ -235,11 +192,47 @@ h2{font:800 clamp(1.7rem,3.6vw,2.6rem)/1.1 var(--display);letter-spacing:-.015em
   </div>
 </section>
 
-<section class="link">
-  <div class="wrap">
-    <div class="step"><span>Ensemble</span></div>
-    <h2>OS fait tourner l'atelier. Entreprise travaille pour vous.</h2>
-    <p class="lede">On conçoit et on entretient vos agents depuis notre atelier. Chaque entreprise a son propre espace, séparé des autres et protégé : vos données restent les vôtres.</p>
+<section class="prod" id="atelier">
+  <div class="wrap grid">
+    <div class="copy">
+      <div class="step"><span>Notre atelier</span> · KheprIA OS</div>
+      <h2>Derrière vos agents, notre atelier.</h2>
+      <p class="tag">KheprIA OS, l'outil avec lequel on construit et suit vos projets.</p>
+      <p>De l'audit de départ à la mise en service, chaque étape tient sur un seul fil. Vous voyez où en est votre projet sans avoir à relancer personne.</p>
+      <ul class="facts">
+        <li>Un espace client pour suivre votre projet</li>
+        <li>L'avancement vient du travail livré, pas d'un pourcentage au doigt mouillé</li>
+      </ul>
+    </div>
+    <figure class="figure" style="margin:0">
+      <svg class="osline" viewBox="0 0 1000 230" role="img" aria-label="Le fil d'un projet : audit, dossier, développement, livraison, espace client">
+        <path class="wire" d="M80 90 H920"/>
+        <g class="os">
+          <use href="#hx" class="node" x="45" y="55" width="70" height="70"/>
+          <use href="#hx" class="node" x="255" y="55" width="70" height="70" style="animation-delay:1.5s"/>
+          <use href="#hx" class="node" x="465" y="55" width="70" height="70" style="animation-delay:3s"/>
+          <use href="#hx" class="node" x="675" y="55" width="70" height="70" style="animation-delay:4.5s"/>
+          <use href="#hx" class="node" x="885" y="55" width="70" height="70" style="animation-delay:6s"/>
+        </g>
+        <g filter="url(#glow)"><circle r="8" class="pg"><animateMotion dur="6s" repeatCount="indefinite" path="M80 90 H920"/></circle></g>
+        <g text-anchor="middle">
+          <text class="lbl" x="80" y="170">Audit</text>
+          <text class="lbl" x="290" y="170">Dossier</text>
+          <text class="lbl" x="500" y="170">Code</text>
+          <text class="lbl" x="710" y="170">Livraison</text>
+          <text class="lbl" x="920" y="170">Vous</text>
+          <text class="sub" x="80" y="200">le départ</text>
+          <text class="sub" x="290" y="200">un seul dossier</text>
+          <text class="sub" x="500" y="200">suivi au commit</text>
+          <text class="sub" x="710" y="200">mise en service</text>
+          <text class="sub" x="920" y="200">espace client</text>
+        </g>
+      </svg>
+      <figcaption class="cap">Un seul fil, de l'audit à votre espace client.</figcaption>
+    </figure>
+  </div>
+  <div class="wrap protect">
+    <p class="lede">Chaque entreprise a son propre espace, séparé des autres et protégé : vos données restent les vôtres.</p>
     <div class="wide">
       <svg viewBox="0 0 900 320" role="img" aria-label="KheprIA OS relié à trois entreprises clientes, chacune dans son propre espace protégé, séparé des autres">
         <path class="wire" d="M250 160 C 420 160, 480 60, 660 60 M250 160 H660 M250 160 C 420 160, 480 260, 660 260"/>
@@ -272,8 +265,8 @@ h2{font:800 clamp(1.7rem,3.6vw,2.6rem)/1.1 var(--display);letter-spacing:-.015em
 </section>
 </main>
 
-<footer class="wrap foot">
-  <p class="soon">Lancement à venir.<small>Une question, un projet, une envie d'essayer en premier ?</small><small class="base">kheprIA · basés à Limoges</small></p>
+<footer class="wrap foot" id="premiers">
+  <p class="soon">Faites partie des premières entreprises à l'essayer.<small>Lancement à venir. Écrivez-nous, on vous prévient dès que c'est prêt.</small><small class="base">kheprIA · basés à Limoges</small></p>
   <div class="mail"><a href="mailto:olivier@khepria.pro"><code id="addr">olivier@khepria.pro</code></a><button id="copy" type="button">Copier</button></div>
 </footer>
 
