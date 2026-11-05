@@ -6,12 +6,13 @@ servie sur `khepria.pro`.
 ## Contenu
 
 - [`index.html`](index.html) — landing **autonome** (CSS, JS, police Manrope et SVG *inline*,
-  aucune dépendance réseau ni build) : le logo hexagonal or/cyan s'allume et irrigue l'écran
-  de flux de lumière (canvas 2D, interactif au pointeur). Message discret « Lancement à venir »
-  et CTA `mailto:olivier@khepria.pro`. Source : variante B de `projects/landing-hexagone`.
-- [`fond.webp`](fond.webp) — image de la scène (941×1672). [`og.jpg`](og.jpg) — aperçu de partage 1200×630.
-- Paramètres de vérification : `?intro` rejoue l'intro complète, `?debug` affiche les tracés ;
-  `window.__rendre(t)` dessine la scène au temps `t` (captures).
+  aucune dépendance réseau ni build) : hero canvas (hexagone or/cyan tracé, soleil levant, flux de
+  lumière interactifs au pointeur) centré sur **KheprIA Entreprise** (agents IA pour TPE), section
+  « Notre atelier » (**KheprIA OS** + espaces clients protégés), schémas SVG animés et pied d'appel
+  « premières entreprises » + `mailto:olivier@khepria.pro`.
+  `prefers-reduced-motion` fige toutes les animations.
+- [`og.jpg`](og.jpg) — aperçu de partage 1200×630. [`fond.webp`](fond.webp) — image de l'ancienne
+  scène, plus utilisée par la page (conservée car copiée par le bloc de mise à jour ci-dessous).
 
 ## Déploiement (VPS OVH, conteneur hors Coolify)
 
@@ -51,7 +52,7 @@ echo "OK - sauvegarde : $B"
 )
 # attendu : / 200 text/html, /fond.webp 200 image/webp, /og.jpg 200 image/jpeg, /absent.jpg 404, /health 200
 for u in / /fond.webp /og.jpg /absent.jpg /health; do printf '%-12s ' $u; curl -s -o /dev/null -w '%{http_code} %{content_type}\n' https://khepria.pro$u; done
-curl -s https://khepria.pro/ | grep -c 'khepria.pro/og.jpg'   # > 0 : nouvelle page (absent de l'ancienne)
+curl -s https://khepria.pro/ | grep -c 'KheprIA Entreprise'   # > 0 : nouvelle page (absent de l'ancienne)
 ```
 
 Si le bloc s'arrête **après** la copie de `nginx.conf` (test ou reload en échec), nginx tourne encore
