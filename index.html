@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>kheprIA — KheprIA OS et KheprIA Entreprise, lancement à venir</title>
-<meta name="description" content="kheprIA construit à Limoges ses propres logiciels d'IA pour les petites entreprises : KheprIA OS, puis KheprIA Entreprise. Lancement à venir.">
+<meta name="description" content="kheprIA conçoit en France ses propres logiciels d'IA pour les petites entreprises : KheprIA OS, puis KheprIA Entreprise. Lancement à venir.">
 <link rel="canonical" href="https://khepria.pro/">
 <meta name="theme-color" content="#000000">
 <meta name="color-scheme" content="dark">
@@ -14,7 +14,7 @@
 <meta property="og:locale" content="fr_FR">
 <meta property="og:title" content="kheprIA — KheprIA OS et KheprIA Entreprise, lancement à venir">
 <meta property="og:url" content="https://khepria.pro/">
-<meta property="og:description" content="kheprIA construit à Limoges ses propres logiciels d'IA pour les petites entreprises : KheprIA OS, puis KheprIA Entreprise. Lancement à venir.">
+<meta property="og:description" content="kheprIA conçoit en France ses propres logiciels d'IA pour les petites entreprises : KheprIA OS, puis KheprIA Entreprise. Lancement à venir.">
 <meta property="og:image" content="https://khepria.pro/og.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <meta property="og:image:width" content="1200">
@@ -111,6 +111,7 @@ h2{font:800 clamp(1.7rem,3.6vw,2.6rem)/1.1 var(--display);letter-spacing:-.015em
 .foot{padding-block:80px 64px;display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between;align-items:end}
 .soon{font:600 clamp(1.5rem,3vw,2.1rem) var(--display);margin:0}
 .soon small{display:block;font:400 1rem var(--body);color:var(--mute);margin-top:8px}
+.soon .base{font:400 .75rem var(--mono);letter-spacing:.1em;text-transform:uppercase;margin-top:22px}
 .mail{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
 .mail code{font:500 1rem var(--mono);color:var(--gold);user-select:all}
 .mail button{font:500 .75rem var(--mono);letter-spacing:.1em;text-transform:uppercase;background:none;color:var(--cream);border:1px solid var(--line);border-radius:2px;padding:8px 12px;cursor:pointer}
@@ -133,11 +134,11 @@ h2{font:800 clamp(1.7rem,3.6vw,2.6rem)/1.1 var(--display);letter-spacing:-.015em
 
 <header class="hero">
   <canvas id="sky" aria-hidden="true"></canvas>
-  <div class="wrap top"><span class="mark">khepr<b>IA</b></span><span class="where">Limoges · Nouvelle-Aquitaine</span></div>
+  <div class="wrap top"><span class="mark">khepr<b>IA</b></span><span class="where">Conçu en France</span></div>
   <div class="wrap hero-text">
-    <div class="eyebrow">Khepri, le soleil qui se lève</div>
+    <div class="eyebrow">Logiciels d'IA conçus en France</div>
     <h1>Deux outils <em>se lèvent</em> chez kheprIA.</h1>
-    <p class="lede">On construit à Limoges nos propres logiciels d'IA pour les petites entreprises. Le premier pilote nos projets avec vous. Le second fera travailler des agents pour vous.</p>
+    <p class="lede">On conçoit en France nos propres logiciels d'IA pour les petites entreprises. Le premier pilote nos projets avec vous. Le second fera travailler des agents pour vous.</p>
     <nav class="duo" aria-label="Les deux outils"><a href="#os">KheprIA OS</a><a href="#entreprise">KheprIA Entreprise</a></nav>
   </div>
 </header>
@@ -237,13 +238,16 @@ h2{font:800 clamp(1.7rem,3.6vw,2.6rem)/1.1 var(--display);letter-spacing:-.015em
 <section class="link">
   <div class="wrap">
     <div class="step"><span>Ensemble</span></div>
-    <h2>OS fait tourner l'atelier, Entreprise travaille chez vous.</h2>
-    <p class="lede">On crée et on entretient vos agents depuis OS. L'accès à vos données ne s'ouvre que si vous l'autorisez, et pour un temps limité.</p>
+    <h2>OS fait tourner l'atelier. Entreprise travaille pour vous.</h2>
+    <p class="lede">On conçoit et on entretient vos agents depuis notre atelier. Chaque entreprise a son propre espace, séparé des autres et protégé : vos données restent les vôtres.</p>
     <div class="wide">
-      <svg viewBox="0 0 900 320" role="img" aria-label="KheprIA OS relié à trois entreprises clientes, chacune avec sa propre instance, par un accès que le client autorise">
+      <svg viewBox="0 0 900 320" role="img" aria-label="KheprIA OS relié à trois entreprises clientes, chacune dans son propre espace protégé, séparé des autres">
         <path class="wire" d="M250 160 C 420 160, 480 60, 660 60 M250 160 H660 M250 160 C 420 160, 480 260, 660 260"/>
-        <rect x="430" y="40" width="40" height="240" rx="2" fill="none" stroke="var(--gold)" stroke-dasharray="4 8" stroke-width="1.5"/>
-        <text class="sub" x="450" y="24" text-anchor="middle" style="font-size:14px;fill:var(--gold)">accès autorisé par vous</text>
+        <g fill="none" stroke="var(--cyan)" stroke-dasharray="4 7" stroke-width="1.5" opacity=".7">
+          <rect x="645" y="15" width="250" height="90" rx="6"/>
+          <rect x="645" y="115" width="250" height="90" rx="6"/>
+          <rect x="645" y="215" width="250" height="90" rx="6"/>
+        </g>
         <use href="#hx" class="node" x="90" y="80" width="160" height="160" style="stroke:var(--gold);fill:#1d1710"/>
         <use href="#hx" class="node" x="660" y="25" width="70" height="70" style="stroke:var(--cyan)"/>
         <use href="#hx" class="node" x="660" y="125" width="70" height="70" style="stroke:var(--cyan)"/>
@@ -257,10 +261,10 @@ h2{font:800 clamp(1.7rem,3.6vw,2.6rem)/1.1 var(--display);letter-spacing:-.015em
           <text class="lbl" x="170" y="160" style="font-size:34px">OS</text>
           <text class="sub" x="170" y="188" style="font-size:14px">l'atelier kheprIA</text>
         </g>
-        <g class="sub" style="font-size:17px">
-          <text x="745" y="56">La boulangerie</text><text x="745" y="76" style="font-size:12px">son instance</text>
-          <text x="745" y="156">Le plombier</text><text x="745" y="176" style="font-size:12px">son instance</text>
-          <text x="745" y="256">Le cabinet</text><text x="745" y="276" style="font-size:12px">son instance</text>
+        <g class="sub" style="font-size:15px">
+          <text x="745" y="56">La boulangerie</text><text x="745" y="76" style="font-size:12px;fill:var(--cyan)">espace protégé</text>
+          <text x="745" y="156">Le plombier</text><text x="745" y="176" style="font-size:12px;fill:var(--cyan)">espace protégé</text>
+          <text x="745" y="256">Le cabinet</text><text x="745" y="276" style="font-size:12px;fill:var(--cyan)">espace protégé</text>
         </g>
       </svg>
     </div>
@@ -269,7 +273,7 @@ h2{font:800 clamp(1.7rem,3.6vw,2.6rem)/1.1 var(--display);letter-spacing:-.015em
 </main>
 
 <footer class="wrap foot">
-  <p class="soon">Lancement à venir.<small>Une question, un projet, une envie d'essayer en premier ?</small></p>
+  <p class="soon">Lancement à venir.<small>Une question, un projet, une envie d'essayer en premier ?</small><small class="base">kheprIA · basés à Limoges</small></p>
   <div class="mail"><a href="mailto:olivier@khepria.pro"><code id="addr">olivier@khepria.pro</code></a><button id="copy" type="button">Copier</button></div>
 </footer>
 
