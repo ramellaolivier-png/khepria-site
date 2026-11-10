@@ -30,6 +30,8 @@ h3{font-size:1.05rem;margin:28px 0 6px}
 p,ul{margin:0 0 14px}
 ul{padding-left:1.2em}
 li{margin-bottom:4px}
+#tel{font:500 .75rem var(--mono);letter-spacing:.08em;text-transform:uppercase;background:none;color:var(--cream);border:1px solid var(--line);border-radius:2px;padding:5px 10px;cursor:pointer}
+#tel:hover{border-color:var(--gold)}
 .foot{margin-top:64px;padding-block:28px 48px;border-top:1px solid var(--line);font:400 .78rem var(--mono);color:var(--mute)}
 </style>
 </head>
@@ -45,8 +47,8 @@ li{margin-bottom:4px}
 <ul>
   <li>SIRET : 533 608 543 00021</li>
   <li>Inscrit au Registre national des entreprises (RNE) sous le numéro 533 608 543</li>
-  <li>Adresse : À COMPLÉTER</li>
-  <li>Téléphone : À COMPLÉTER</li>
+  <li>Adresse : 64 boulevard Gambetta, 87000 Limoges, France</li>
+  <li>Téléphone : <button id="tel" type="button" data-t="MDcgODIgMDEgNzUgODA=">Afficher le numéro</button></li>
   <li>Courriel : <a href="mailto:olivier@khepria.pro">olivier@khepria.pro</a></li>
   <li>TVA non applicable, article 293 B du Code général des impôts</li>
 </ul>
@@ -88,5 +90,14 @@ li{margin-bottom:4px}
 </main>
 
 <footer class="wrap foot">© 2026 kheprIA · Limoges</footer>
+<script>
+// Le numéro n'est pas écrit en clair dans la page : il n'apparaît qu'au clic (protection minimale contre l'aspiration automatique).
+const b=document.getElementById('tel');
+b.addEventListener('click',()=>{
+  const n=atob(b.dataset.t),a=document.createElement('a');
+  a.href='tel:+33'+n.replace(/\s/g,'').slice(1);a.textContent=n;
+  b.replaceWith(a);a.focus();
+});
+</script>
 </body>
 </html>
