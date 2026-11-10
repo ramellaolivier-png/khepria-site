@@ -11,16 +11,23 @@ servie sur `khepria.pro`.
   « Notre atelier » (**KheprIA OS** + espaces clients protégés), schémas SVG animés et pied d'appel
   « premières entreprises » + `mailto:olivier@khepria.pro`.
   `prefers-reduced-motion` fige toutes les animations.
-- [`og.jpg`](og.jpg) — aperçu de partage 1200×630. [`fond.webp`](fond.webp) — image de l'ancienne
-  scène, plus utilisée par la page (conservée car copiée par le bloc de mise à jour ci-dessous).
+  Section « Questions » (FAQ en `<details>`) et pied avec lien vers les mentions légales.
+- [`mentions-legales.html`](mentions-legales.html) — mentions légales (éditeur : micro-entreprise
+  d'Olivier, hébergeur OVH) et information sur les données personnelles, servie sur
+  `/mentions-legales`, non indexée. **Tant qu'elle contient « À COMPLÉTER », le bloc de mise à jour
+  refuse de déployer.**
+- [`404.html`](404.html), [`robots.txt`](robots.txt) — vraie page d'erreur et robots.
+- [`og.jpg`](og.jpg) — aperçu de partage 1200×630.
 
 ## Déploiement (VPS OVH, conteneur hors Coolify)
 
 Le site est servi en **statique par nginx** (pas de Node, pas de build) :
 
-- [`Dockerfile`](Dockerfile) — image `nginx:1.27-alpine` qui copie `index.html`, `fond.webp`, `og.jpg` et `nginx.conf`.
-- [`nginx.conf`](nginx.conf) — écoute sur le port **3000**, sert `index.html` pour tout chemin
-  (sauf les images : 404 si absentes, cache 7 j), expose `/health` et `/api/health`.
+- [`Dockerfile`](Dockerfile) — image `nginx:1.27-alpine` qui copie les pages, `robots.txt`, `og.jpg` et `nginx.conf`.
+- [`nginx.conf`](nginx.conf) — écoute sur le port **3000**, sert `/` et `/mentions-legales`, renvoie un
+  **vrai 404** pour tout chemin inconnu, pose les en-têtes de sécurité (HSTS, CSP, `nosniff`,
+  `Referrer-Policy`), coupe le journal des visites (engagement des mentions légales), expose
+  `/health` et `/api/health`.
 
 Depuis le 07/10/2026, `khepria.pro` et `www` sont servis par le conteneur **`khepria-landing`**,
 lancé à la main sur le VPS OVH (hors Coolify, réseau `coolify`, routeurs Traefik priorité 1000),
@@ -42,18 +49,26 @@ sudo git -C "$D" rev-parse HEAD > "$B/commit"
 sudo docker cp khepria-landing:/usr/share/nginx/html/index.html "$B/"
 sudo docker cp khepria-landing:/etc/nginx/conf.d/default.conf "$B/"
 sudo git -C "$D" pull --ff-only
+if grep -q 'COMPL.TER' "$D/mentions-legales.html"; then echo "STOP - mentions legales incompletes"; exit 1; fi
 sudo docker build -q -t khepria-landing:latest "$D"   # image a jour pour une future recreation
 sudo docker run --rm khepria-landing:latest nginx -t  # teste la nouvelle conf hors du conteneur en ligne
-for f in fond.webp og.jpg index.html; do sudo docker cp "$D/$f" khepria-landing:/usr/share/nginx/html/$f; done
+for f in og.jpg robots.txt 404.html mentions-legales.html index.html; do sudo docker cp "$D/$f" khepria-landing:/usr/share/nginx/html/$f; done
 sudo docker cp "$D/nginx.conf" khepria-landing:/etc/nginx/conf.d/default.conf
 sudo docker exec khepria-landing nginx -t
 sudo docker exec khepria-landing nginx -s reload
+sudo docker exec khepria-landing rm -f /usr/share/nginx/html/fond.webp   # image de l'ancienne scene, retiree du depot
 echo "OK - sauvegarde : $B"
 )
-# attendu : / 200 text/html, /fond.webp 200 image/webp, /og.jpg 200 image/jpeg, /absent.jpg 404, /health 200
-for u in / /fond.webp /og.jpg /absent.jpg /health; do printf '%-12s ' $u; curl -s -o /dev/null -w '%{http_code} %{content_type}\n' https://khepria.pro$u; done
-curl -s https://khepria.pro/ | grep -c 'KheprIA Entreprise'   # > 0 : nouvelle page (absent de l'ancienne)
+# attendu : / 200 text/html, /mentions-legales 200 text/html, /robots.txt 200 text/plain, /og.jpg 200 image/jpeg, /absent 404, /health 200
+for u in / /mentions-legales /robots.txt /og.jpg /absent /health; do printf '%-18s ' $u; curl -s -o /dev/null -w '%{http_code} %{content_type}\n' https://khepria.pro$u; done
+curl -s https://khepria.pro/ | grep -c 'href="/mentions-legales"'   # > 0 : nouvelle page (absent de l'ancienne)
+curl -sI https://khepria.pro/ | grep -ci 'content-security-policy'  # 1 : en-tetes de securite en place
 ```
+
+Les mentions légales affirment que le serveur n'enregistre pas les visites. nginx est réglé pour
+(`access_log off`), mais **vérifier aussi Traefik** après le premier déploiement de cette version :
+`sudo docker inspect coolify-proxy | grep -i accesslog` ne doit rien afficher. S'il journalise les
+accès, le couper ou corriger la phrase de `mentions-legales.html`.
 
 Si le bloc s'arrête **après** la copie de `nginx.conf` (test ou reload en échec), nginx tourne encore
 sur l'ancienne conf mais un redémarrage du conteneur échouerait : faire tout de suite le retour arrière.
@@ -69,8 +84,8 @@ sudo docker exec khepria-landing nginx -t && sudo docker exec khepria-landing ng
 sudo git -C /opt/khepria-landing reset --hard "$(cat "$B/commit")" && sudo docker build -q -t khepria-landing:latest /opt/khepria-landing
 ```
 
-`fond.webp` et `og.jpg` restent dans le conteneur après un retour arrière : sans effet, l'ancienne page
-ne les appelle pas. Les fichiers copiés survivent à un `docker restart`, pas à un `docker rm` ; l'image
+Les fichiers ajoutés (`mentions-legales.html`, `404.html`, `robots.txt`) restent dans le conteneur après
+un retour arrière : sans effet, l'ancienne conf ne les sert pas. Les fichiers copiés survivent à un `docker restart`, pas à un `docker rm` ; l'image
 `khepria-landing:latest` étant reconstruite à chaque mise à jour, un `docker rm` suivi du même
 `docker run` (labels visibles avec `sudo docker inspect khepria-landing`) redonne la version en ligne.
 
