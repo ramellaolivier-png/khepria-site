@@ -1,4 +1,4 @@
-# khepria.pro — landing « Lancement à venir »
+# khepria.pro — landing « En développement »
 
 Page de pré-lancement de **kheprIA** (agence IA pour les PME de Nouvelle-Aquitaine, Limoges),
 servie sur `khepria.pro`.
@@ -6,12 +6,10 @@ servie sur `khepria.pro`.
 ## Contenu
 
 - [`index.html`](index.html) — landing **autonome** (CSS, JS, police Manrope et SVG *inline*,
-  aucune dépendance réseau ni build) : hero canvas (hexagone or/cyan tracé, soleil levant, flux de
-  lumière interactifs au pointeur) centré sur **KheprIA Entreprise** (agents IA pour TPE), section
-  « Notre atelier » (**KheprIA OS** + espaces clients protégés), schémas SVG animés et pied d'appel
-  « premières entreprises » + `mailto:olivier@khepria.pro`.
+  aucune dépendance réseau ni build) : un seul écran avec le logo **KheprIA Entreprise** qui se
+  trace, un noyau 3D en canvas, le message « En développement », une barre de chargement, une trame
+  d'hexagones réactive au pointeur, puis les liens `mailto:olivier@khepria.pro` et mentions légales.
   `prefers-reduced-motion` fige toutes les animations.
-  Section « Questions » (FAQ en `<details>`) et pied avec lien vers les mentions légales.
 - [`mentions-legales.html`](mentions-legales.html) — mentions légales (éditeur : micro-entreprise
   d'Olivier, hébergeur OVH) et information sur les données personnelles, servie sur
   `/mentions-legales`, non indexée. **Tant qu'elle contient « À COMPLÉTER », le bloc de mise à jour
